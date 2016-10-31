@@ -16,19 +16,20 @@ public class MoveHandler : MonoBehaviour {
     {
         if (Input.GetMouseButtonDown(0))
         {
+
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 500.0f))
             {
                 if (hit.transform.tag.Equals("post"))
                 {
-                    postObj = hit.transform.gameObject;
-                    ignoreAllPost(true);
-                    postObj.GetComponent<Collider>().isTrigger = true;
+                        postObj = hit.transform.gameObject;
+                        ignoreAllPost(true);
+                        postObj.GetComponent<Collider>().isTrigger = true;
 
-                    mouseHitPost = true;
-                    lockRotation = true;
-                    displayInfo.GetComponent<DisplayPostInfoHandler>().setSelected(postObj);
+                        mouseHitPost = true;
+                        lockRotation = true;
+                        displayInfo.GetComponent<DisplayPostInfoHandler>().setSelected(postObj);
                 }
             }
         }
@@ -41,7 +42,6 @@ public class MoveHandler : MonoBehaviour {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit, 500.0f))
                 {
-                    //Debug.Log(ray.GetPoint(100f));
                     if (hit.transform.tag.Equals("post_ray_collider"))
                     {
                         Vector3 nyPos = new Vector3(hit.point.x, hit.point.y + 3f, hit.point.z);
@@ -49,25 +49,33 @@ public class MoveHandler : MonoBehaviour {
                         if (lockRotation)
                             postObj.transform.eulerAngles = Vector3.zero;
                     }
+                    else
+                    {
+                        mouseUp();
+                    }
                 }
             }
         }
 
         if (Input.GetMouseButtonUp(0))
         {
-            if (postObj == null)
-                mouseHitPost = false;
-
-            if (mouseHitPost)
-            {
-                ignoreAllPost(false);
-                postObj.GetComponent<Collider>().isTrigger = false;
-                mouseHitPost = false;
-                lockRotation = false;
-            }
+            mouseUp();
         }
     }
 
+    private void mouseUp()
+    {
+        if (postObj == null)
+            mouseHitPost = false;
+
+        if (mouseHitPost)
+        {
+            ignoreAllPost(false);
+            postObj.GetComponent<Collider>().isTrigger = false;
+            mouseHitPost = false;
+            lockRotation = false;
+        }
+    }
     public void ignoreAllPost(bool ignore)
     {
         GameObject[] postObjekter = GameObject.FindGameObjectsWithTag("post");
