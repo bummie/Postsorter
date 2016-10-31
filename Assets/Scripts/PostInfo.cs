@@ -3,15 +3,20 @@ using System.Collections;
 
 public class PostInfo : MonoBehaviour {
 
-    public float length = 1f, width = 1f, height = 1f;
-    public int post_type = 0; // 0 = Package, 1 = Small, 2 = Large;
-    public float paidPorto = 0f;
-    public float weight = 0f;
-    public bool stamped = false;
+    public Vector3 size { get; set; }
+    public int post_type { get; set; }
+    public float paidPorto { get; set; }
+    public float weight{ get; set; }
+    public bool stamped { get; set; }
 
-	void Start ()
+    void Start ()
     {
-	    
+        size = Vector3.zero;
+        post_type = 0;
+        weight = paidPorto = 0f;
+        stamped = false;
 	}
+
+    
 	
 }

@@ -4,8 +4,13 @@ using System.Collections;
 public class MoveHandler : MonoBehaviour {
 
     private bool mouseHitPost = false, lockRotation = false;
-    private GameObject postObj;
+    private GameObject postObj, displayInfo;
     private Vector3 lastObjPos;
+
+    void Start()
+    {
+        displayInfo = GameObject.FindGameObjectWithTag("DisplayInfo");
+    }
 
     void Update()
     {
@@ -22,6 +27,7 @@ public class MoveHandler : MonoBehaviour {
 
                     mouseHitPost = true;
                     lockRotation = true;
+                    displayInfo.GetComponent<DisplayPostInfoHandler>().setPostInfo(postObj);
                 }
             }
         }
@@ -34,7 +40,7 @@ public class MoveHandler : MonoBehaviour {
                 Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out hit, 500.0f))
                 {
-                    Debug.Log(ray.GetPoint(100f));
+                    //Debug.Log(ray.GetPoint(100f));
                     if (hit.transform.tag.Equals("post_ray_collider"))
                     {
                         Vector3 nyPos = new Vector3(hit.point.x, hit.point.y + 3f, hit.point.z);
