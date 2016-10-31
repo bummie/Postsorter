@@ -24,10 +24,11 @@ public class MoveHandler : MonoBehaviour {
                 {
                     postObj = hit.transform.gameObject;
                     ignoreAllPost(true);
+                    postObj.GetComponent<Collider>().isTrigger = true;
 
                     mouseHitPost = true;
                     lockRotation = true;
-                    displayInfo.GetComponent<DisplayPostInfoHandler>().setPostInfo(postObj);
+                    displayInfo.GetComponent<DisplayPostInfoHandler>().setSelected(postObj);
                 }
             }
         }
@@ -60,6 +61,7 @@ public class MoveHandler : MonoBehaviour {
             if (mouseHitPost)
             {
                 ignoreAllPost(false);
+                postObj.GetComponent<Collider>().isTrigger = false;
                 mouseHitPost = false;
                 lockRotation = false;
             }

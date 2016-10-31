@@ -4,6 +4,7 @@ using System.Collections;
 
 public class DisplayPostInfoHandler : MonoBehaviour {
 
+    private GameObject selectedObject;
     private Text money, size, weight, stamp;
 
 	void Start ()
@@ -14,9 +15,27 @@ public class DisplayPostInfoHandler : MonoBehaviour {
         stamp = GameObject.Find("text_stamp").GetComponent<Text>();
     }
 
-    public void setPostInfo(GameObject postObj)
+    public void setSelected(GameObject postObj)
     {
-        PostInfo postInfo = postObj.GetComponent<PostInfo>();
+        selectedObject = postObj;
+        updatePostInfoDisplay();
+    }
+
+    public void setSelectedStamped()
+    {
+        if (selectedObject != null)
+        {
+            if (!selectedObject.GetComponent<PostInfo>().stamped)
+            {
+                selectedObject.GetComponent<PostInfo>().stamped = true;
+                updatePostInfoDisplay();
+            }
+        }
+    }
+
+    public void updatePostInfoDisplay()
+    {
+        PostInfo postInfo = selectedObject.GetComponent<PostInfo>();
         if (postInfo != null)
         {
             money.text = postInfo.paidPorto + ",-";
