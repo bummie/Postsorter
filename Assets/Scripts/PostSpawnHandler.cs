@@ -3,6 +3,15 @@ using System.Collections;
 
 public class PostSpawnHandler : MonoBehaviour
 {
+    Vector3 postSpawnPoint, postSpawnPointQueue;
+
+    void Start()
+    {
+        postSpawnPoint = GameObject.FindGameObjectWithTag("post_spawnpoint").transform.position;
+        postSpawnPointQueue = GameObject.FindGameObjectWithTag("post_spawnpoint_queue").transform.position;
+        createLetterSmall();
+    }
+
     private GameObject createPackage()
     {
         return null;
@@ -15,6 +24,8 @@ public class PostSpawnHandler : MonoBehaviour
 
     private GameObject createLetterSmall()
     {
-        return null;
+        GameObject smallLetter = Instantiate(Resources.Load("Objects/Post/brev_lite") as GameObject);
+        smallLetter.transform.position = postSpawnPoint;
+        return smallLetter;
     }
 }
