@@ -1,0 +1,71 @@
+{
+  "0": {
+    "district_0": [
+      {
+        "type":"brev_lite",
+        "paid":12,
+        "size":[12, 13, 13],
+        "weight":14,
+        "stamped":false
+      },
+      {
+        "type":"brev_stort",
+        "paid":12,
+        "size":[12, 13, 13],
+        "weight":14,
+        "stamped":true
+      },
+      {
+        "type":"pakke",
+        "paid":12,
+        "size":[30, 10, 30],
+        "weight":14,
+        "stamped":false
+      },
+	  {
+        "type":"pakke",
+        "paid":12,
+        "size":[25, 3, 13],
+        "weight":14,
+        "stamped":true
+      },
+      {
+        "type":"pakke",
+        "paid":12,
+        "size":[12, 8, 13],
+        "weight":14,
+        "stamped":false
+      },
+      {
+        "type":"pakke",
+        "paid":12,
+        "size":[30, 2, 10],
+        "weight":14,
+        "stamped":true
+      }
+    ],
+     "district_1": [
+      {
+        "type":"pakke",
+        "paid":12,
+        "size":[25, 3, 13],
+        "weight":14,
+        "stamped":true
+      },
+      {
+        "type":"pakke",
+        "paid":12,
+        "size":[12, 8, 13],
+        "weight":14,
+        "stamped":false
+      },
+      {
+        "type":"pakke",
+        "paid":12,
+        "size":[30, 2, 10],
+        "weight":14,
+        "stamped":true
+      }
+    ]
+  }
+}

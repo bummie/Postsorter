@@ -75,6 +75,7 @@
     <Compile Include="Assets\Scripts\Handlers\PostSpawnHandler.cs" />
     <Compile Include="Assets\Scripts\Objects\ConveyerBelt.cs" />
     <Compile Include="Assets\Scripts\Objects\PostInfo.cs" />
+    <Compile Include="Assets\Scripts\Other\PostMapReader.cs" />
     <Compile Include="Assets\Scripts\Other\SimpleJSON.cs" />
   </ItemGroup>
   <ItemGroup>

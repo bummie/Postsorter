@@ -39,7 +39,6 @@ public class DisplayPostInfoHandler : MonoBehaviour {
         PostInfo postInfo = selectedObject.GetComponent<PostInfo>();
         if (postInfo != null)
         {
-            Debug.Log("PaidPortoInfo: " + postInfo.paidPorto);
             money.text = postInfo.paidPorto + ",-";
             size.text = postInfo.size.x + "cm Width\n" + postInfo.size.z + "cm Length\n" + postInfo.size.y + "cm Height\n";
             weight.text = postInfo.weight + "g";
