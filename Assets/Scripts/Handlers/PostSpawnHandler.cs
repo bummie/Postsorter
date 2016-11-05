@@ -1,14 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
 
 public class PostSpawnHandler : MonoBehaviour
 {
     private Vector3 postSpawnPoint, postSpawnPointQueue;
-    private GameObject postObjekter;
+    private GameObject postObjekter, portoHandler;
     private Random rand;
+
+    public List<GameObject> postObjectsList;
 
     void Start()
     {
+        postObjectsList = new List<GameObject>();
+
+        portoHandler = GameObject.FindGameObjectWithTag("PortoHandler");
         postObjekter = GameObject.FindGameObjectWithTag("post_objekter");
         postSpawnPoint = GameObject.FindGameObjectWithTag("post_spawnpoint").transform.position;
         postSpawnPointQueue = GameObject.FindGameObjectWithTag("post_spawnpoint_queue").transform.position;
@@ -28,11 +35,8 @@ public class PostSpawnHandler : MonoBehaviour
             package.transform.parent = postObjekter.transform;
             package.transform.name = "Pakke";
             package.transform.position = postSpawnPoint;
+            setRandomValuesPackage(package);
 
-            package.GetComponentInChildren<PostInfo>().size = new Vector3(100f, 100f, 100f);
-            package.GetComponentInChildren<PostInfo>().weight = 210f;
-            package.GetComponentInChildren<PostInfo>().paidPorto = 30f;
-            package.GetComponentInChildren<PostInfo>().stamped = false;
             setStampColor(package);
 
             return package;
@@ -153,5 +157,21 @@ public class PostSpawnHandler : MonoBehaviour
             postObject.GetComponentInChildren<PostInfo>().setStampColor(Color.green);
         else
             postObject.GetComponentInChildren<PostInfo>().setStampColor(Color.red);
+    }
+
+    private void setRandomValuesPackage(GameObject package)
+    {
+        if(package != null)
+        {
+            Vector3 ranSize = new Vector3(Random.Range(10f, 110f), Random.Range(1f, 110f), Random.Range(10f, 110f));
+            float weight = Random.Range(15f, 2300f);
+            float paid = Random.Range(0, 11);
+            paid = portoHandler.GetComponent<PortoHandler>().getAllPortoPrice()[(int)paid];
+            package.GetComponentInChildren<PostInfo>().size = ranSize;
+            package.GetComponentInChildren<PostInfo>().weight = weight;
+            package.GetComponentInChildren<PostInfo>().paidPorto = paid;
+            package.GetComponentInChildren<PostInfo>().stamped = false;
+        }
+       
     }
 }

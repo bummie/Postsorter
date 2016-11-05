@@ -69,11 +69,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\ConveyerBelt.cs" />
-    <Compile Include="Assets\Scripts\DisplayPostInfoHandler.cs" />
-    <Compile Include="Assets\Scripts\MoveHandler.cs" />
-    <Compile Include="Assets\Scripts\PostInfo.cs" />
-    <Compile Include="Assets\Scripts\PostSpawnHandler.cs" />
+    <Compile Include="Assets\Scripts\Handlers\DisplayPostInfoHandler.cs" />
+    <Compile Include="Assets\Scripts\Handlers\MoveHandler.cs" />
+    <Compile Include="Assets\Scripts\Handlers\PortoHandler.cs" />
+    <Compile Include="Assets\Scripts\Handlers\PostSpawnHandler.cs" />
+    <Compile Include="Assets\Scripts\Objects\ConveyerBelt.cs" />
+    <Compile Include="Assets\Scripts\Objects\PostInfo.cs" />
+    <Compile Include="Assets\Scripts\Other\SimpleJSON.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Resources\Shaders\3DText.shader" />
