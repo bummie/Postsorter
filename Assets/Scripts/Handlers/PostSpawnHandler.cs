@@ -7,11 +7,9 @@ public class PostSpawnHandler : MonoBehaviour
     private Vector3 postSpawnPoint, postSpawnPointQueue;
     private GameObject postObjekter, portoHandler;
     private PostMapReader mapReader;
-    public List<GameObject> postObjectsList;
 
     void Start()
     {
-        postObjectsList = new List<GameObject>();
         mapReader = new PostMapReader();
         portoHandler = GameObject.FindGameObjectWithTag("PortoHandler");
         postObjekter = GameObject.FindGameObjectWithTag("post_objekter");
