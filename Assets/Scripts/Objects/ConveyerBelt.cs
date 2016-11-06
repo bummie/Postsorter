@@ -14,7 +14,7 @@ public class ConveyerBelt : MonoBehaviour {
     // Flytter pakken på conveyerbeltet
     void OnTriggerStay(Collider post)
     {
-        if (post.gameObject.tag.Equals("post"))
+        if (post.gameObject.tag.Equals("post") || post.gameObject.tag.Equals("garbage"))
         {
             //post.GetComponent<Rigidbody>().AddForce(Vector3.back * beltForce * post.GetComponent<Rigidbody>().mass);
             post.GetComponent<Rigidbody>().velocity = Vector3.back * beltForce;

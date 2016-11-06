@@ -25,28 +25,28 @@ public class RegisterPost : MonoBehaviour
                 if (post.gameObject.name.Equals("pakke"))
                 {
                     Debug.Log("Jævlig bra, sorterte riktig!");
-                    Destroy(post);
+                    Destroy(post.gameObject);
                     score.amount_Package++;
                 }
                 else
                 {
                     Debug.Log("FEIL!");
-                    Destroy(post);
+                    Destroy(post.gameObject);
                     score.amount_Wrong++;
                 }
             }
-            else if(sortingBoxType == 1) // Stor
+            else if (sortingBoxType == 1) // Stor
             {
                 if (post.gameObject.name.Equals("brev_stort"))
                 {
                     Debug.Log("Jævlig bra, sorterte riktig!");
-                    Destroy(post);
+                    Destroy(post.gameObject);
                     score.amount_Large++;
                 }
                 else
                 {
                     Debug.Log("FEIL!");
-                    Destroy(post);
+                    Destroy(post.gameObject);
                     score.amount_Wrong++;
                 }
             }
@@ -55,27 +55,40 @@ public class RegisterPost : MonoBehaviour
                 if (post.gameObject.name.Equals("brev_lite"))
                 {
                     Debug.Log("Jævlig bra, sorterte riktig!");
-                    Destroy(post);
+                    Destroy(post.gameObject);
                     score.amount_Small++;
                 }
                 else
                 {
                     Debug.Log("FEIL!");
-                    Destroy(post);
+                    Destroy(post.gameObject);
                     score.amount_Wrong++;
                 }
             }
             else if (sortingBoxType == 3) // PORTO
             {
                 Debug.Log("Jævlig bra, sorterte riktig! KANSKJE DU SORTERTE PORTO YO");
-                Destroy(post);
+                Destroy(post.gameObject);
                 score.amount_Porto++;
             }
             else if (sortingBoxType == 4) // Gulv
             {
                 Debug.Log("Mistet posten på gulvet, ikke bra!");
-                Destroy(post);
+                Destroy(post.gameObject);
                 score.amount_Lost++;
+            }
+        }
+        else if (post.gameObject.tag.Equals("garbage"))
+        {
+            if (sortingBoxType == 4) // Gulv
+            {
+                Debug.Log("Mistet søppel på gulvet, jævlig bra!");
+                Destroy(post.gameObject);
+            }
+            else
+            {
+                Debug.Log("Fysj søppel!");
+                Destroy(post.gameObject);
             }
         }
         //score.printScore();

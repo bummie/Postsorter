@@ -67,6 +67,7 @@
     <Compile Include="Assets\Standard Assets\Utility\FPSCounter.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Confetti Particles 2\Confetti 2 - Readme.txt" />
     <None Include="Assets\Resources\Shaders\3DText.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />

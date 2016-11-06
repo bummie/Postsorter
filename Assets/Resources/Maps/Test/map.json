@@ -8,6 +8,24 @@
         "weight":14,
         "stamped":false
       },
+	  {
+        "type":"garbage",
+      },
+	  {
+        "type":"garbage",
+      },
+	  {
+        "type":"garbage",
+      },
+	  {
+        "type":"garbage",
+      },
+	  {
+        "type":"garbage",
+      },
+	  {
+        "type":"garbage",
+      },
       {
         "type":"brev_stort",
         "paid":12,

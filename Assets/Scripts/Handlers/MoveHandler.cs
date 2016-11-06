@@ -21,14 +21,16 @@ public class MoveHandler : MonoBehaviour {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out hit, 500.0f))
             {
-                if (hit.transform.tag.Equals("post"))
+                if (hit.transform.tag.Equals("post") || hit.transform.tag.Equals("garbage"))
                 {
                         postObj = hit.transform.gameObject;
                         ignoreAllPost(true);
+                        ignoreAllGarbage(true);
                         postObj.GetComponent<Collider>().isTrigger = true;
 
                         mouseHitPost = true;
                         lockRotation = true;
+                    if(hit.transform.tag.Equals("post"))
                         displayInfo.GetComponent<DisplayPostInfoHandler>().setSelected(postObj);
                 }
             }
@@ -71,6 +73,7 @@ public class MoveHandler : MonoBehaviour {
         if (mouseHitPost)
         {
             ignoreAllPost(false);
+            ignoreAllGarbage(false);
             postObj.GetComponent<Collider>().isTrigger = false;
             mouseHitPost = false;
             lockRotation = false;
@@ -80,6 +83,18 @@ public class MoveHandler : MonoBehaviour {
     {
         GameObject[] postObjekter = GameObject.FindGameObjectsWithTag("post");
         foreach (GameObject g in postObjekter)
+        {
+            if (ignore)
+                g.layer = 2;
+            else
+                g.layer = 0;
+        }
+    }
+
+    public void ignoreAllGarbage(bool ignore)
+    {
+        GameObject[] garbageObjekter = GameObject.FindGameObjectsWithTag("garbage");
+        foreach (GameObject g in garbageObjekter)
         {
             if (ignore)
                 g.layer = 2;
