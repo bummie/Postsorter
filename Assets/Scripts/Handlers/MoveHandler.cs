@@ -32,6 +32,7 @@ public class MoveHandler : MonoBehaviour {
                         lockRotation = true;
                     if(hit.transform.tag.Equals("post"))
                         displayInfo.GetComponent<DisplayPostInfoHandler>().setSelected(postObj);
+                    GetComponent<AudioSource>().Play();
                 }
             }
         }

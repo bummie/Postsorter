@@ -147,6 +147,15 @@ public class PortoHandler : MonoBehaviour {
                 }
             }
         }
+        if (isPorto)
+        {
+            // wtf
+            AudioSource[] lyd = GetComponents<AudioSource>();
+            foreach (AudioSource l in lyd)
+            {
+                l.Play();
+            }
+        }
         return isPorto;
     }
 
