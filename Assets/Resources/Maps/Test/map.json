@@ -3,22 +3,17 @@
     "district_0": [
       {
         "type":"brev_lite",
-        "paid":12,
-        "size":[12, 13, 13],
-        "weight":14,
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":21,
         "stamped":false
       },
 	  {
-        "type":"garbage",
-      },
-	  {
-        "type":"garbage",
-      },
-	  {
-        "type":"garbage",
-      },
-	  {
-        "type":"garbage",
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":20,
+        "stamped":false
       },
 	  {
         "type":"garbage",
@@ -28,9 +23,16 @@
       },
       {
         "type":"brev_stort",
-        "paid":12,
-        "size":[12, 13, 13],
-        "weight":14,
+        "paid":20,
+        "size":[21, 0.1, 29.7],
+        "weight":48,
+        "stamped":true
+      },
+	   {
+        "type":"brev_stort",
+        "paid":20,
+        "size":[21, 0.1, 29.7],
+        "weight":69,
         "stamped":true
       },
       {
@@ -43,13 +45,20 @@
 	  {
         "type":"pakke",
         "paid":12,
-        "size":[25, 3, 13],
+        "size":[20, 3, 13],
         "weight":14,
         "stamped":true
       },
       {
         "type":"pakke",
-        "paid":12,
+        "paid":46,
+        "size":[12, 8, 13],
+        "weight":14,
+        "stamped":false
+      },
+	   {
+        "type":"pakke",
+        "paid":26,
         "size":[12, 8, 13],
         "weight":14,
         "stamped":false

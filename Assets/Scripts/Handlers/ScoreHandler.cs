@@ -9,11 +9,11 @@ public class ScoreHandler : MonoBehaviour {
     public int amount_Wrong { get; set; }
     public int amount_Lost { get; set; }
     public int amount_Garbage { get; set; }
-
+    public int amount_notStamped { get; set; }
 
     void Start ()
     {
-        amount_Package = amount_Large = amount_Small = amount_Porto  = amount_Wrong = amount_Lost = amount_Garbage = 0;
+        amount_Package = amount_Large = amount_Small = amount_Porto  = amount_Wrong = amount_Lost = amount_Garbage = amount_notStamped = 0;
 	}
 
     public void printScore()
@@ -25,6 +25,8 @@ public class ScoreHandler : MonoBehaviour {
         Debug.Log("Feilsortert: " + amount_Wrong + "\n");
         Debug.Log("Mistet: " + amount_Lost + "\n");
         Debug.Log("Søppel: " + amount_Garbage + "\n");
+        Debug.Log("Not Stamped: " + amount_notStamped + "\n");
+
     }
 
 }

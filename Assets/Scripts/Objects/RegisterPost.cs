@@ -7,10 +7,12 @@ public class RegisterPost : MonoBehaviour
     public int sortingBoxType = 0;
 
     public ScoreHandler score;
+    public PortoHandler porto;
 
     void Start()
     {
         score = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<ScoreHandler>();
+        porto = GameObject.FindGameObjectWithTag("PortoHandler").GetComponent<PortoHandler>();
     }
 
     // When post enters the sortingbox
@@ -24,13 +26,15 @@ public class RegisterPost : MonoBehaviour
             {
                 if (post.gameObject.name.Equals("pakke"))
                 {
-                    Debug.Log("Jævlig bra, sorterte riktig!");
-                    Destroy(post.gameObject);
+                    //Debug.Log("Jævlig bra, sorterte riktig!");
+                    registerStamped(post.gameObject);
                     score.amount_Package++;
+
+                    Destroy(post.gameObject);
                 }
                 else
                 {
-                    Debug.Log("FEIL!");
+                    //Debug.Log("FEIL!");
                     Destroy(post.gameObject);
                     score.amount_Wrong++;
                 }
@@ -39,13 +43,14 @@ public class RegisterPost : MonoBehaviour
             {
                 if (post.gameObject.name.Equals("brev_stort"))
                 {
-                    Debug.Log("Jævlig bra, sorterte riktig!");
+                    registerStamped(post.gameObject);
+                    //Debug.Log("Jævlig bra, sorterte riktig!");
                     Destroy(post.gameObject);
                     score.amount_Large++;
                 }
                 else
                 {
-                    Debug.Log("FEIL!");
+                    //Debug.Log("FEIL!");
                     Destroy(post.gameObject);
                     score.amount_Wrong++;
                 }
@@ -54,26 +59,32 @@ public class RegisterPost : MonoBehaviour
             {
                 if (post.gameObject.name.Equals("brev_lite"))
                 {
-                    Debug.Log("Jævlig bra, sorterte riktig!");
+                    registerStamped(post.gameObject);
+                    //Debug.Log("Jævlig bra, sorterte riktig!");
                     Destroy(post.gameObject);
                     score.amount_Small++;
                 }
                 else
                 {
-                    Debug.Log("FEIL!");
+                    //Debug.Log("FEIL!");
                     Destroy(post.gameObject);
                     score.amount_Wrong++;
                 }
             }
             else if (sortingBoxType == 3) // PORTO
             {
-                Debug.Log("Jævlig bra, sorterte riktig! KANSKJE DU SORTERTE PORTO YO");
+                //Debug.Log("Jævlig bra, sorterte riktig! KANSKJE DU SORTERTE PORTO YO");
+                bool portoCorrect = porto.isPorto(post.gameObject);
+                //Debug.Log("Porto: " + portoCorrect);
+                registerStamped(post.gameObject);
                 Destroy(post.gameObject);
-                score.amount_Porto++;
+
+                if (portoCorrect)
+                    score.amount_Porto++;
             }
             else if (sortingBoxType == 4) // Gulv
             {
-                Debug.Log("Mistet posten på gulvet, ikke bra!");
+               // Debug.Log("Mistet posten på gulvet, ikke bra!");
                 Destroy(post.gameObject);
                 score.amount_Lost++;
             }
@@ -82,15 +93,23 @@ public class RegisterPost : MonoBehaviour
         {
             if (sortingBoxType == 4) // Gulv
             {
-                Debug.Log("Mistet søppel på gulvet, jævlig bra!");
+                //Debug.Log("Mistet søppel på gulvet, jævlig bra!");
                 Destroy(post.gameObject);
             }
             else
             {
-                Debug.Log("Fysj søppel!");
+                //Debug.Log("Fysj søppel!");
+                score.amount_Garbage++;
                 Destroy(post.gameObject);
             }
         }
-        //score.printScore();
+        score.printScore();
+    }
+
+    private void registerStamped(GameObject post)
+    {
+        if (!post.GetComponent<PostInfo>().stamped)
+            score.amount_notStamped++;
+
     }
 }
