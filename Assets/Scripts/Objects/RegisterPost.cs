@@ -81,6 +81,8 @@ public class RegisterPost : MonoBehaviour
 
                 if (portoCorrect)
                     score.amount_Porto++;
+                else
+                    score.amount_Wrong++;
             }
             else if (sortingBoxType == 4) // Gulv
             {
@@ -103,7 +105,7 @@ public class RegisterPost : MonoBehaviour
                 Destroy(post.gameObject);
             }
         }
-        score.printScore();
+        //score.printScore();
     }
 
     private void registerStamped(GameObject post)

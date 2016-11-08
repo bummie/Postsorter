@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Handlers\DisplayPostInfoHandler.cs" />
+    <Compile Include="Assets\Scripts\Handlers\HUDHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\MoveHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\PortoHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\PostSpawnHandler.cs" />
