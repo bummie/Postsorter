@@ -6,13 +6,19 @@ public class RegisterPost : MonoBehaviour
     // 0 Pakke, 1 Stor, 2 Liten, 3 Porto
     public int sortingBoxType = 0;
 
-    public ScoreHandler score;
-    public PortoHandler porto;
+    private ScoreHandler score;
+    private PortoHandler porto;
+    private AudioSource Lyd_Korrekt, Lyd_Feil, Lyd_Porto;
 
     void Start()
     {
         score = GameObject.FindGameObjectWithTag("ScoreHandler").GetComponent<ScoreHandler>();
         porto = GameObject.FindGameObjectWithTag("PortoHandler").GetComponent<PortoHandler>();
+
+        //Lyder
+        Lyd_Korrekt = GameObject.FindGameObjectWithTag("Lyd_Korrekt").GetComponent<AudioSource>();
+        Lyd_Feil = GameObject.FindGameObjectWithTag("Lyd_Feil").GetComponent<AudioSource>();
+        Lyd_Porto = GameObject.FindGameObjectWithTag("Lyd_Porto").GetComponent<AudioSource>();
     }
 
     // When post enters the sortingbox
@@ -27,49 +33,31 @@ public class RegisterPost : MonoBehaviour
                 if (post.gameObject.name.Equals("pakke"))
                 {
                     //Debug.Log("Jævlig bra, sorterte riktig!");
-                    registerStamped(post.gameObject);
                     score.amount_Package++;
-
-                    Destroy(post.gameObject);
+                    sortertRiktig(post.gameObject);
                 }
                 else
-                {
-                    //Debug.Log("FEIL!");
-                    Destroy(post.gameObject);
-                    score.amount_Wrong++;
-                }
+                    sortertFeil(post.gameObject);
             }
             else if (sortingBoxType == 1) // Stor
             {
                 if (post.gameObject.name.Equals("brev_stort"))
                 {
-                    registerStamped(post.gameObject);
-                    //Debug.Log("Jævlig bra, sorterte riktig!");
-                    Destroy(post.gameObject);
+                    sortertRiktig(post.gameObject);
                     score.amount_Large++;
                 }
                 else
-                {
-                    //Debug.Log("FEIL!");
-                    Destroy(post.gameObject);
-                    score.amount_Wrong++;
-                }
+                    sortertFeil(post.gameObject);
             }
             else if (sortingBoxType == 2) // Liten
             {
                 if (post.gameObject.name.Equals("brev_lite"))
                 {
-                    registerStamped(post.gameObject);
-                    //Debug.Log("Jævlig bra, sorterte riktig!");
-                    Destroy(post.gameObject);
+                    sortertRiktig(post.gameObject);
                     score.amount_Small++;
                 }
                 else
-                {
-                    //Debug.Log("FEIL!");
-                    Destroy(post.gameObject);
-                    score.amount_Wrong++;
-                }
+                    sortertFeil(post.gameObject);
             }
             else if (sortingBoxType == 3) // PORTO
             {
@@ -80,15 +68,23 @@ public class RegisterPost : MonoBehaviour
                 Destroy(post.gameObject);
 
                 if (portoCorrect)
+                {
                     score.amount_Porto++;
+                    playSoundPorto();
+                }
                 else
+                {
                     score.amount_Wrong++;
+                    playSoundWrong();
+                }
+                
             }
             else if (sortingBoxType == 4) // Gulv
             {
-               // Debug.Log("Mistet posten på gulvet, ikke bra!");
+                // Debug.Log("Mistet posten på gulvet, ikke bra!");
                 Destroy(post.gameObject);
                 score.amount_Lost++;
+                playSoundWrong();
             }
         }
         else if (post.gameObject.tag.Equals("garbage"))
@@ -97,12 +93,14 @@ public class RegisterPost : MonoBehaviour
             {
                 //Debug.Log("Mistet søppel på gulvet, jævlig bra!");
                 Destroy(post.gameObject);
+                playSoundCorrect();
             }
             else
             {
                 //Debug.Log("Fysj søppel!");
                 score.amount_Garbage++;
                 Destroy(post.gameObject);
+                playSoundWrong();
             }
         }
         //score.printScore();
@@ -112,6 +110,34 @@ public class RegisterPost : MonoBehaviour
     {
         if (!post.GetComponent<PostInfo>().stamped)
             score.amount_notStamped++;
+    }
 
+    private void sortertFeil(GameObject post)
+    {
+        playSoundWrong();
+        Destroy(post);
+        score.amount_Wrong++;
+    }
+
+    private void sortertRiktig(GameObject post)
+    {
+        registerStamped(post);
+        Destroy(post);
+        playSoundCorrect();
+    }
+
+    private void playSoundCorrect()
+    {
+        Lyd_Korrekt.Play();
+    }
+
+    private void playSoundPorto()
+    {
+        Lyd_Porto.Play();
+    }
+
+    private void playSoundWrong()
+    {
+        Lyd_Feil.Play();
     }
 }

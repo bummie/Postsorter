@@ -43,7 +43,6 @@ public class PostSpawnHandler : MonoBehaviour
 
     void spawnQueuedPost()
     {
-        Debug.Log(queuedPostIndex+"/"+queuedPost.Length);
         queuedPost[queuedPostIndex].transform.position = postSpawnPoint;
         queuedPost[queuedPostIndex].layer = 0;
         queuedPost[queuedPostIndex].GetComponent<Rigidbody>().useGravity = true;
