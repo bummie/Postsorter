@@ -70,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Handlers\DisplayPostInfoHandler.cs" />
+    <Compile Include="Assets\Scripts\Handlers\GameHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\HUDHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\MoveHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\PortoHandler.cs" />
@@ -78,8 +79,10 @@
     <Compile Include="Assets\Scripts\Objects\ConveyerBelt.cs" />
     <Compile Include="Assets\Scripts\Objects\PostInfo.cs" />
     <Compile Include="Assets\Scripts\Objects\RegisterPost.cs" />
+    <Compile Include="Assets\Scripts\Other\DataIO.cs" />
     <Compile Include="Assets\Scripts\Other\PostMapReader.cs" />
     <Compile Include="Assets\Scripts\Other\SimpleJSON.cs" />
+    <Compile Include="Assets\Scripts\Other\Timer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Confetti Particles 2\Confetti 2 - Readme.txt" />

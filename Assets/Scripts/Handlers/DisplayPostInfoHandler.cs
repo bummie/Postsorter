@@ -39,8 +39,23 @@ public class DisplayPostInfoHandler : MonoBehaviour {
         PostInfo postInfo = selectedObject.GetComponent<PostInfo>();
         if (postInfo != null)
         {
+            float length, width, height;
+            Vector3 _size = postInfo.size;
+            if (_size.x >= _size.z)
+            {
+                length = _size.x;
+                width = _size.z;
+            }
+            else
+            {
+                length = _size.z;
+                width = _size.x;
+            }
+
+            height = _size.y;
+
             money.text = postInfo.paidPorto + ",-";
-            size.text = postInfo.size.x + "cm Width\n" + postInfo.size.z + "cm Length\n" + postInfo.size.y + "cm Height\n";
+            size.text = "L: " + length + "\nW: " + width + "\nH: " + height; 
             weight.text = postInfo.weight + "g";
             if (postInfo.stamped)
             {
