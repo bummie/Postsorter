@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Objects\RegisterPost.cs" />
     <Compile Include="Assets\Scripts\Other\DataIO.cs" />
     <Compile Include="Assets\Scripts\Other\PostMapReader.cs" />
+    <Compile Include="Assets\Scripts\Other\PostWaves.cs" />
     <Compile Include="Assets\Scripts\Other\SimpleJSON.cs" />
     <Compile Include="Assets\Scripts\Other\Timer.cs" />
   </ItemGroup>

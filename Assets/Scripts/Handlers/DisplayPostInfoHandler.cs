@@ -6,6 +6,7 @@ public class DisplayPostInfoHandler : MonoBehaviour {
 
     private GameObject selectedObject;
     private Text money, size, weight, stamp;
+    private Button stampButton;
 
 	void Start ()
     {
@@ -13,6 +14,8 @@ public class DisplayPostInfoHandler : MonoBehaviour {
         size = GameObject.Find("text_ruler").GetComponent<Text>();
         weight = GameObject.Find("text_weight").GetComponent<Text>();
         stamp = GameObject.Find("text_stamp").GetComponent<Text>();
+        stampButton = GameObject.Find("Stamp_Button").GetComponent<Button>();
+
     }
 
     public void setSelected(GameObject postObj)
@@ -61,11 +64,17 @@ public class DisplayPostInfoHandler : MonoBehaviour {
             {
                 stamp.text = "Stamped";
                 stamp.color = Color.green;
+                ColorBlock cb = stampButton.colors;
+                cb.normalColor = Color.green;
+                stampButton.colors = cb;
             }
             else
             {
                 stamp.text = "Not Stamped";
                 stamp.color = Color.red;
+                ColorBlock cb = stampButton.colors;
+                cb.normalColor = Color.red;
+                stampButton.colors = cb;
             }
         }
     }
