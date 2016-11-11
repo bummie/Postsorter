@@ -93,6 +93,102 @@
         "weight":14,
         "stamped":true
       }
+    ],
+	"district_2": [
+      {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":21,
+        "stamped":false
+      },
+	  {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":20,
+        "stamped":false
+      }
+    ],
+	"district_3": [
+      {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":21,
+        "stamped":false
+      },
+	  {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":20,
+        "stamped":false
+      }
+    ],
+	"district_4": [
+      {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":21,
+        "stamped":false
+      },
+	  {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":20,
+        "stamped":false
+      }
+    ],
+	"district_5": [
+      {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":21,
+        "stamped":false
+      },
+	  {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":20,
+        "stamped":false
+      }
+    ],
+	"district_6": [
+      {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":21,
+        "stamped":false
+      },
+	  {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":20,
+        "stamped":false
+      }
+    ],
+	"district_7": [
+      {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":21,
+        "stamped":false
+      },
+	  {
+        "type":"brev_lite",
+        "paid":13,
+        "size":[21, 0.1, 14],
+        "weight":20,
+        "stamped":false
+      }
     ]
   }
 }

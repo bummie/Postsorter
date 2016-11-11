@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Postsorter.CSharp.Plugins", "Postsorter.CSharp.Plugins.csproj", "{15181BB2-18A8-8318-16B4-B0B7EF51A886}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Postsorter.CSharp", "Postsorter.CSharp.csproj", "{98D18541-1497-A5EA-BF18-40BF56BDD38F}"
 EndProject
 Global
@@ -11,10 +9,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{15181BB2-18A8-8318-16B4-B0B7EF51A886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{15181BB2-18A8-8318-16B4-B0B7EF51A886}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{15181BB2-18A8-8318-16B4-B0B7EF51A886}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{15181BB2-18A8-8318-16B4-B0B7EF51A886}.Release|Any CPU.Build.0 = Release|Any CPU
 		{98D18541-1497-A5EA-BF18-40BF56BDD38F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{98D18541-1497-A5EA-BF18-40BF56BDD38F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98D18541-1497-A5EA-BF18-40BF56BDD38F}.Release|Any CPU.ActiveCfg = Release|Any CPU

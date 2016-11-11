@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class DataIO : MonoBehaviour
 {
 
     // Settings
     public const string SETTINGS_SOUND_SFX = "settings_sound_sfx",
-                        SETTINGS_SOUND_MUSIC= "settings_sound_music";
+                        SETTINGS_SOUND_MUSIC = "settings_sound_music",
+                        SETTINGS_FIRSTIME = "settigs_firsttime";
 
     // Playerdata
     public const string PLAYERDATA_POSTOFFICE_NAME = "playerdata_postoffice_name",
@@ -22,11 +24,26 @@ public class DataIO : MonoBehaviour
 
     public const int AMOUNT_DISTRICTS = 8;
 
-    public void firstTimeInitData()
+    public bool firstLoad()
     {
+        bool first = false;
+
+        if (!PlayerPrefs.HasKey(SETTINGS_FIRSTIME))
+        {
+            firstTimeInitData();
+            first = true;
+        }
+
+        return first;
+    }
+
+    private void firstTimeInitData()
+    {
+        Debug.Log("Init: DataIO");
         //Settings
         setSFX(true);
         setMusic(true);
+        setFirstTime(false);
 
         //Player
         setOfficeName("Unnamed");
@@ -42,10 +59,22 @@ public class DataIO : MonoBehaviour
             setAmountWorkers(i, 0);
 
             if (i == 0)
-                setDistrictUnlocked(true);
+                setDistrictUnlocked(i, true);
             else
-                setDistrictUnlocked(false);
+                setDistrictUnlocked(i, false);
         }
+    }
+
+    public int[] getUnlockedDistricts()
+    {
+        List<int> unlockedDistricts = new List<int>();
+        //Districts
+        for (int i = 0; i < AMOUNT_DISTRICTS; i++)
+        {
+            if (getDistrictUnlocked(i))
+                unlockedDistricts.Add(i);
+        }
+        return unlockedDistricts.ToArray();
     }
 
     //
@@ -91,6 +120,29 @@ public class DataIO : MonoBehaviour
         {
             bool ison = false;
             if (PlayerPrefs.GetInt(SETTINGS_SOUND_MUSIC) == 1)
+                ison = true;
+            return ison;
+        }
+        else
+            return false;
+    }
+
+    public void setFirstTime(bool first)
+    {
+        int i = 0;
+        if (first)
+            i = 1;
+
+        PlayerPrefs.SetInt(SETTINGS_FIRSTIME, i);
+        PlayerPrefs.Save();
+    }
+
+    public bool getFirstTime()
+    {
+        if (PlayerPrefs.HasKey(SETTINGS_FIRSTIME))
+        {
+            bool ison = false;
+            if (PlayerPrefs.GetInt(SETTINGS_FIRSTIME) == 1)
                 ison = true;
             return ison;
         }
@@ -218,22 +270,22 @@ public class DataIO : MonoBehaviour
         return workers;
     }
 
-    public void setDistrictUnlocked(bool locked)
+    public void setDistrictUnlocked(int id, bool locked)
     {
         int i = 0;
         if (locked)
             i = 1;
 
-        PlayerPrefs.SetInt(DISTRICT_UNLOCKED, i);
+        PlayerPrefs.SetInt(DISTRICT_UNLOCKED + id, i);
         PlayerPrefs.Save();
     }
 
-    public bool getDistrictUnlocked()
+    public bool getDistrictUnlocked(int id)
     {
-        if (PlayerPrefs.HasKey(DISTRICT_UNLOCKED))
+        if (PlayerPrefs.HasKey(DISTRICT_UNLOCKED + id))
         {
             bool locked = false;
-            if (PlayerPrefs.GetInt(DISTRICT_UNLOCKED) == 1)
+            if (PlayerPrefs.GetInt(DISTRICT_UNLOCKED + id) == 1)
                 locked = true;
             return locked;
         }

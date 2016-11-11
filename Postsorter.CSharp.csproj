@@ -63,12 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="Postsorter.CSharp.Plugins.csproj">
-      <Project>{15181BB2-18A8-8318-16B4-B0B7EF51A886}</Project>
-      <Name>Postsorter.CSharp.Plugins</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
+    <Compile Include="Assets\Resources\Terrain\Water (Basic)\Scripts\WaterBasic.cs" />
     <Compile Include="Assets\Scripts\Handlers\DisplayPostInfoHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\GameHandler.cs" />
     <Compile Include="Assets\Scripts\Handlers\HUDHandler.cs" />
@@ -87,7 +82,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Confetti Particles 2\Confetti 2 - Readme.txt" />
+    <None Include="Assets\Resources\Materials\TerrainMat\TerrainSurface.shader" />
     <None Include="Assets\Resources\Shaders\3DText.shader" />
+    <None Include="Assets\Resources\Terrain\Water (Basic)\Shaders\FXWaterBasic.shader" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
