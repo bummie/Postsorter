@@ -13,7 +13,6 @@ public class PostWaves : MonoBehaviour {
 
     void Start ()
     {
-        gH = gameObject;
         pSH = GameObject.FindGameObjectWithTag("PostSpawnHandler");
         postSpawn = pSH.GetComponent<PostSpawnHandler>();
         IO = new DataIO();
