@@ -3,37 +3,45 @@ using System.Collections;
 
 public class GameHandler : MonoBehaviour
 {
-    public const int STARTED = 0, RUNNING = 1, PAUSED = 2, GAME_END = 3;
+    public const int STARTED = 0, RUNNING = 1, PAUSED = 2, GAME_END = 3, WAVE_FINISHED = 4;
     private static int GAME_STATE;
-
+    private bool startedInit = false;
     private Timer timer;
     private DataIO IO;
+    private PostWaves wave;
     private HUDHandler hud;
-    private PostSpawnHandler postSpawn;
     private int[] districtWaves;
 
     void Start ()
     {
-        postSpawn = GameObject.FindGameObjectWithTag("PostSpawnHandler").GetComponent<PostSpawnHandler>();
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDHandler>();
         timer = GetComponent<Timer>();
-        IO = GetComponent<DataIO>();
-
-        setGameState(STARTED);
+        IO = new DataIO();
+        wave = GetComponent<PostWaves>();
 	}
 
     void Update ()
     {
+       if(!startedInit)
+            setGameState(STARTED);
+
         switch (GAME_STATE)
         {
-
             case STARTED:
+                if (!startedInit)
+                {
+                    spawnPost();
+                    setGameState(RUNNING);
+                    startedInit = true;
+                }
                 // Setter HUDtiden til timertiden
                 break;
 
             case RUNNING:
                     // Setter HUDtiden til timertiden
                     timeRanOut();
+                if (wave.isWaveDone())
+                    setGameState(WAVE_FINISHED);
                 break;
 
             case PAUSED:
@@ -41,6 +49,10 @@ public class GameHandler : MonoBehaviour
 
                 break;
             case GAME_END:
+                // Do shit game ended
+                break;
+
+            case WAVE_FINISHED:
                 // Do shit game ended
                 break;
         }
@@ -52,10 +64,7 @@ public class GameHandler : MonoBehaviour
         switch (GAME_STATE)
         {
             case STARTED:
-                IO.firstLoad(); // TRUE FALSE
-                districtWaves = IO.getUnlockedDistricts();
-                hud.setWave("1/" + districtWaves.Length);
-                setGameState(RUNNING);
+               
                 break;
 
             case RUNNING:
@@ -75,13 +84,26 @@ public class GameHandler : MonoBehaviour
 
                 timer.stopStimer();
                 break;
+
+            case WAVE_FINISHED:
+                Debug.Log("Wave finished");
+                break;
         }
     }
 
     private void timeRanOut()
     {
         hud.setTimer(timer.getPrettyTimeLeft());
-        if (timer.getTimeLeft() < 0)
+        if (timer.getTimeLeft() <= 0)
+        {
             setGameState(GAME_END);
+            timer.stopStimer();
+        }
+    }
+
+    private void spawnPost()
+    {
+        hud.setWave(wave.getCurrentWave() + "/" + wave.getAmountWaves());
+        wave.spawnWave();
     }
 }

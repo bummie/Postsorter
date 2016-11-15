@@ -17,6 +17,7 @@ public class PostSpawnHandler : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("Started: PostSpawner");
         mapReader = new PostMapReader();
         portoHandler = GameObject.FindGameObjectWithTag("PortoHandler");
         postObjekter = GameObject.FindGameObjectWithTag("post_objekter");
@@ -24,8 +25,6 @@ public class PostSpawnHandler : MonoBehaviour
         postSpawnPointQueue = GameObject.FindGameObjectWithTag("post_spawnpoint_queue").transform.position;
 
         queuedPost = null;
-
-        spawnPostFromMap(0, 0);
     }
 
     void Update()

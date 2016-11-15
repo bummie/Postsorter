@@ -2,9 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class DataIO : MonoBehaviour
+public class DataIO
 {
-
     // Settings
     public const string SETTINGS_SOUND_SFX = "settings_sound_sfx",
                         SETTINGS_SOUND_MUSIC = "settings_sound_music",
@@ -23,6 +22,11 @@ public class DataIO : MonoBehaviour
                         DISTRICT_WORKERS = "district_workers_";
 
     public const int AMOUNT_DISTRICTS = 8;
+
+    public DataIO()
+    {
+        firstLoad();
+    }
 
     public bool firstLoad()
     {
