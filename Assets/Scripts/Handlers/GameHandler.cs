@@ -69,7 +69,6 @@ public class GameHandler : MonoBehaviour
 
             case RUNNING:
                 Debug.Log("Running");
-
                 timer.startTimer();
                 break;
 
@@ -81,7 +80,7 @@ public class GameHandler : MonoBehaviour
 
             case GAME_END:
                 Debug.Log("Game_ended");
-
+                hud.displayNotification("Game over", 3f);
                 timer.stopStimer();
                 break;
 
@@ -113,6 +112,7 @@ public class GameHandler : MonoBehaviour
     private void spawnPost()
     {
         hud.setWave((wave.getCurrentWave()+1) + "/" + wave.getAmountWaves());
+        hud.displayNotification("Next wave from " + IO.getDistrictName(wave.getCurrentDistrict()), 2.3f);
         wave.spawnWave();
     }
 
@@ -120,7 +120,6 @@ public class GameHandler : MonoBehaviour
     {
         if (wave.getCurrentWave() + 1 > wave.getAmountWaves())
         {
-            Debug.Log("Last wave finished");
             return true;
         }
         else
