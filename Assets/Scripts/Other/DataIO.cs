@@ -26,6 +26,7 @@ public class DataIO
     public DataIO()
     {
         firstLoad();
+        setDistrictUnlocked(3, true);
     }
 
     public bool firstLoad()
@@ -62,7 +63,7 @@ public class DataIO
             setPostOfficeLevel(i, 0);
             setAmountWorkers(i, 0);
 
-            if (i == 0)
+            if (i == 0 || i == 3)
                 setDistrictUnlocked(i, true);
             else
                 setDistrictUnlocked(i, false);

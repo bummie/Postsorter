@@ -56,7 +56,7 @@ public class PostWaves : MonoBehaviour {
         int day = IO.getCurrentDay();
 
         if(districtWaves != null)
-            postSpawn.spawnPostFromMap(day, districtWaves[currentWave]);
+            postSpawn.spawnPostFromMap(day, districtWaves[getCurrentWave()]);
 
         waveDone = false;
     }
@@ -68,7 +68,7 @@ public class PostWaves : MonoBehaviour {
 
     public int getCurrentWave()
     {
-        return currentWave+1;
+        return currentWave;
     }
 
     public int getAmountWaves()

@@ -87,6 +87,15 @@ public class GameHandler : MonoBehaviour
 
             case WAVE_FINISHED:
                 Debug.Log("Wave finished");
+                if (isLastWave())
+                    setGameState(GAME_END);
+                else
+                {
+                    setGameState(RUNNING);
+                    wave.setCurrentWave(wave.getCurrentWave()+1);
+                    spawnPost();
+                }
+
                 break;
         }
     }
@@ -103,7 +112,18 @@ public class GameHandler : MonoBehaviour
 
     private void spawnPost()
     {
-        hud.setWave(wave.getCurrentWave() + "/" + wave.getAmountWaves());
+        hud.setWave((wave.getCurrentWave()+1) + "/" + wave.getAmountWaves());
         wave.spawnWave();
+    }
+
+    private bool isLastWave()
+    {
+        if (wave.getCurrentWave() + 1 > wave.getAmountWaves())
+        {
+            Debug.Log("Last wave finished");
+            return true;
+        }
+        else
+            return false;
     }
 }
