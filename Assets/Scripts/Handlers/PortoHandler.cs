@@ -4,10 +4,12 @@ using System.Collections;
 public class PortoHandler : MonoBehaviour {
 
     private float[] portoPris1, portoPris2, portoPris3;
+    private GameObject particleObj;
 
 	void Start ()
     {
         initPortoLister();
+        particleObj = GameObject.FindGameObjectWithTag("particle_porto");
     }
 
     //
@@ -150,10 +152,12 @@ public class PortoHandler : MonoBehaviour {
         if (isPorto)
         {
             // wtf
-            AudioSource[] lyd = GetComponents<AudioSource>();
-            foreach (AudioSource l in lyd)
+           /* AudioSource lyd = GetComponent<AudioSource>();
+            lyd.Play();*/
+            if (particleObj != null)
             {
-                l.Play();
+                if (!particleObj.GetComponent<ParticleSystem>().isPlaying)
+                    particleObj.GetComponent<ParticleSystem>().Play();
             }
         }
         return isPorto;
