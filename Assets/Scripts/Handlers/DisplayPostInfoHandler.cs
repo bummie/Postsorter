@@ -18,8 +18,8 @@ public class DisplayPostInfoHandler : MonoBehaviour {
         stamp = GameObject.Find("text_stamp").GetComponent<Text>();
         stampButton = GameObject.FindGameObjectWithTag("Stamp_Button").GetComponent<Image>();
         lyd_stamp = GameObject.FindGameObjectWithTag("Lyd_Stamp").GetComponent<AudioSource>();
-        green = new Color(86f, 208f, 86f);
-        red = new Color(202f, 86f, 86f);
+        green = new Color(.33f, .8f, .33f);
+        red = new Color(.8f, .33f, .33f);
     }
 
     public void setSelected(GameObject postObj)
@@ -96,8 +96,8 @@ public class DisplayPostInfoHandler : MonoBehaviour {
         else
         {
             money.text = "Garbage";
-            size.text = "Unknown";
-            weight.text = "Unknown";
+            size.text = "<color=grey>Unknown</color>";
+            weight.text = "<color=grey>Unknown</color>";
             stamp.text = "Can't stamp";
                 
             stamp.color = Color.grey;
