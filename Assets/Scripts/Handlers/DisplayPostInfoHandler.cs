@@ -6,7 +6,9 @@ public class DisplayPostInfoHandler : MonoBehaviour {
 
     private GameObject selectedObject;
     private Text money, size, weight, stamp;
-    private Button stampButton;
+    private Image stampButton;
+    private AudioSource lyd_stamp;
+    private Color green, red;
 
 	void Start ()
     {
@@ -14,7 +16,10 @@ public class DisplayPostInfoHandler : MonoBehaviour {
         size = GameObject.Find("text_ruler").GetComponent<Text>();
         weight = GameObject.Find("text_weight").GetComponent<Text>();
         stamp = GameObject.Find("text_stamp").GetComponent<Text>();
-        stampButton = GameObject.FindGameObjectWithTag("Stamp_Button").GetComponent<Button>();
+        stampButton = GameObject.FindGameObjectWithTag("Stamp_Button").GetComponent<Image>();
+        lyd_stamp = GameObject.FindGameObjectWithTag("Lyd_Stamp").GetComponent<AudioSource>();
+        green = new Color(86f, 208f, 86f);
+        red = new Color(202f, 86f, 86f);
     }
 
     public void setSelected(GameObject postObj)
@@ -25,7 +30,7 @@ public class DisplayPostInfoHandler : MonoBehaviour {
 
     public void setSelectedStamped()
     {
-        if (selectedObject != null)
+        if (selectedObject != null && selectedObject.tag == "post")
         {
             if (!selectedObject.GetComponent<PostInfo>().stamped)
             {
@@ -33,10 +38,11 @@ public class DisplayPostInfoHandler : MonoBehaviour {
                 selectedObject.GetComponent<PostInfo>().setStampColor(Color.green);
                 if (stampButton != null)
                 {
-                    ColorBlock cb = stampButton.colors;
-                    cb.normalColor = Color.green;
-                    stampButton.colors = cb;
+
+                    stampButton.color = green;
                 }
+                if (lyd_stamp != null)
+                    lyd_stamp.Play();
                 updatePostInfoDisplay();
             }
         }
@@ -44,48 +50,60 @@ public class DisplayPostInfoHandler : MonoBehaviour {
 
     public void updatePostInfoDisplay()
     {
-        PostInfo postInfo = selectedObject.GetComponent<PostInfo>();
-        if (postInfo != null)
+        if (selectedObject.tag == "post")
         {
-            float length, width, height;
-            Vector3 _size = postInfo.size;
-            if (_size.x >= _size.z)
+            PostInfo postInfo = selectedObject.GetComponent<PostInfo>();
+            if (postInfo != null)
             {
-                length = _size.x;
-                width = _size.z;
-            }
-            else
-            {
-                length = _size.z;
-                width = _size.x;
-            }
-
-            height = _size.y;
-
-            money.text = postInfo.paidPorto + ",-";
-            size.text = "L: " + length + "\nW: " + width + "\nH: " + height; 
-            weight.text = postInfo.weight + "g";
-            if (postInfo.stamped)
-            {
-                stamp.text = "Stamped";
-                stamp.color = Color.green;
-                if (stampButton != null)
+                float length, width, height;
+                Vector3 _size = postInfo.size;
+                if (_size.x >= _size.z)
                 {
-                    ColorBlock cb = stampButton.colors;
-                    cb.normalColor = Color.green;
-                    stampButton.colors = cb;
+                    length = _size.x;
+                    width = _size.z;
+                }
+                else
+                {
+                    length = _size.z;
+                    width = _size.x;
+                }
+
+                height = _size.y;
+
+                money.text = postInfo.paidPorto + "<color=grey>,-</color>";
+                size.text = "<color=grey>H:</color> " + height + ", <color=grey>L:</color>  " + length + ", <color=grey>W:</color>  " + width;
+                weight.text = postInfo.weight + "<color=grey>g</color>";
+                if (postInfo.stamped)
+                {
+                    stamp.text = "Stamped";
+                    stamp.color = green;
+                    if (stampButton != null)
+                    {
+                        stampButton.color = green;
+                    }
+                }
+                else
+                {
+                    stamp.text = "Not Stamped";
+                    stamp.color = red;
+                    if (stampButton != null)
+                    {
+                        stampButton.color = red;
+                    }
                 }
             }
-            else
+        }
+        else
+        {
+            money.text = "Garbage";
+            size.text = "Unknown";
+            weight.text = "Unknown";
+            stamp.text = "Can't stamp";
+                
+            stamp.color = Color.grey;
+            if (stampButton != null)
             {
-                stamp.text = "Not Stamped";
-                stamp.color = Color.red;
-                if (stampButton != null)
-                {
-                    ColorBlock cb = stampButton.colors;
-                    cb.normalColor = Color.red;
-                    stampButton.colors = cb;
-                }
+                stampButton.color = Color.grey;
             }
         }
     }

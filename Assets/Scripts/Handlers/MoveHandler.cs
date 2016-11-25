@@ -30,7 +30,6 @@ public class MoveHandler : MonoBehaviour {
 
                         mouseHitPost = true;
                         lockRotation = true;
-                    if(hit.transform.tag.Equals("post"))
                         displayInfo.GetComponent<DisplayPostInfoHandler>().setSelected(postObj);
                     GetComponent<AudioSource>().Play(); // Fikse her legge til i lydhandleren YOOYO
                 }

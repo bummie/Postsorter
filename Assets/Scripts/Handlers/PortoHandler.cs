@@ -151,9 +151,7 @@ public class PortoHandler : MonoBehaviour {
         }
         if (isPorto)
         {
-            // wtf
-           /* AudioSource lyd = GetComponent<AudioSource>();
-            lyd.Play();*/
+            // Spawn conffetti when porto found
             if (particleObj != null)
             {
                 if (!particleObj.GetComponent<ParticleSystem>().isPlaying)
