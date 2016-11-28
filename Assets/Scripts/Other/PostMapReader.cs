@@ -6,7 +6,9 @@ using SimpleJSON;
 public class PostMapReader
 {
 
-    string mapPath = "Maps/Test/map";
+    public const int SUMMER = 0, AUTUMN = 1, WINTER = 2, SPRING = 3;
+
+    string mapPath = "Maps/Summer/map";
     JSONNode mData;
 
     public PostMapReader()
@@ -15,6 +17,30 @@ public class PostMapReader
         mData = JSON.Parse(mapData.text);
     }
 
+
+    public void setSeason(int season)
+    {
+        switch (season)
+        {
+            case SUMMER:
+                mapPath = "Maps/Summer/map";
+                break;
+
+            case AUTUMN:
+                mapPath = "Maps/Autumn/map";
+                break;
+
+            case WINTER:
+                mapPath = "Maps/Winter/map";
+                break;
+
+            case SPRING:
+                mapPath = "Maps/Spring/map";
+                break;
+        }
+        TextAsset mapData = Resources.Load<TextAsset>(mapPath);
+        mData = JSON.Parse(mapData.text);
+    }
     //
     // Returnerer alle postypene for en dag i ett destrikt
     //

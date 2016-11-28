@@ -10,12 +10,14 @@ public class ScoreHandler : MonoBehaviour {
     private int _amount_Lost;
     private int _amount_Garbage;
     private int _amount_notStamped;
+    private int _amount_Stamped;
+
 
     private GameObject HUD;
 
     void Start ()
     {
-        amount_Package = amount_Large = amount_Small = amount_Porto  = amount_Wrong = amount_Lost = amount_Garbage = amount_notStamped = 0;
+        amount_Package = amount_Large = amount_Small = amount_Porto  = amount_Wrong = amount_Lost = amount_Garbage = amount_notStamped = amount_Stamped = 0;
         HUD = GameObject.FindGameObjectWithTag("HUD");
 	}
 
@@ -28,6 +30,7 @@ public class ScoreHandler : MonoBehaviour {
         Debug.Log("Feilsortert: " + amount_Wrong + "\n");
         Debug.Log("Mistet: " + amount_Lost + "\n");
         Debug.Log("Søppel: " + amount_Garbage + "\n");
+        Debug.Log("Not Stamped: " + amount_Stamped + "\n");
         Debug.Log("Not Stamped: " + amount_notStamped + "\n");
 
     }
@@ -53,5 +56,7 @@ public class ScoreHandler : MonoBehaviour {
     public int amount_Lost { get { return _amount_Lost; } set { _amount_Lost = value; updateHUD(); } }
     public int amount_Garbage { get { return _amount_Garbage; } set { _amount_Garbage = value; updateHUD(); } }
     public int amount_notStamped { get { return _amount_notStamped; } set { _amount_notStamped = value; updateHUD(); } }
+    public int amount_Stamped { get { return _amount_Stamped; } set { _amount_Stamped = value; updateHUD(); } }
+
 
 }

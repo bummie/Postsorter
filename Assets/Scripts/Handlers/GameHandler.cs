@@ -129,6 +129,7 @@ public class GameHandler : MonoBehaviour
     public void gameOverUI()
     {
         hud.displayGameOver(true);
+        hud.setTextScoreTitle("O.G Post");
         hud.setTextScoreTime(timer.getPrettyTimeLeft());
         hud.setTextScorePorto("31");
         hud.setTextScorePostCorrect("31");
