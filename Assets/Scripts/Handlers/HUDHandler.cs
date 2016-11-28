@@ -4,8 +4,14 @@ using System.Collections;
 
 public class HUDHandler : MonoBehaviour
 {
+
+    //HUD
     private Text textTimer, textWaves, textCorrect, textWrong, textPorto, textNoti;
     private GameObject Notification;
+
+    //GameOver
+    public Text gameOverTextTitle, gameOverTextTime, gameOverTextPorto, gameOverTextPostCorrect, gameOverTextPostWrong, gameOverTextStampedCorrect, gameOverTextStampedWrong, gameOverTextMoney;
+    public GameObject panelGameOver;
 
     // Notifcation timer
     private float timeLeft;
@@ -13,17 +19,20 @@ public class HUDHandler : MonoBehaviour
 
     void Start ()
     {
+        // HUD
         textTimer = GameObject.FindGameObjectWithTag("HUD_Timer").GetComponent<Text>();
         textWaves = GameObject.FindGameObjectWithTag("HUD_Wave").GetComponent<Text>();
         textCorrect = GameObject.FindGameObjectWithTag("HUD_Correct").GetComponent<Text>();
         textWrong = GameObject.FindGameObjectWithTag("HUD_Wrong").GetComponent<Text>();
         textPorto = GameObject.FindGameObjectWithTag("HUD_Porto").GetComponent<Text>();
-
         Notification = GameObject.FindGameObjectWithTag("HUD_Noti");
-        textNoti = Notification.GetComponentInChildren<Text>();
 
+        // Notification
+        textNoti = Notification.GetComponentInChildren<Text>();
         displayNotification(false);
+        displayGameOver(false);
         timeLeft = 0f;
+
     }
 
     void Update()
@@ -63,6 +72,7 @@ public class HUDHandler : MonoBehaviour
         if (textWrong != null)
             textWrong.text = text;
     }
+
     public void setPorto(string text)
     {
         if (textPorto != null)
@@ -89,5 +99,61 @@ public class HUDHandler : MonoBehaviour
     {
         if (textNoti != null)
             textNoti.text = text;
+    }
+
+    public void displayGameOver(bool display)
+    {
+        if (panelGameOver != null)
+        {
+            panelGameOver.SetActive(display);
+        }
+    }
+
+    public void setTextScoreTitle(string text)
+    {
+        if (gameOverTextTitle != null)
+            gameOverTextTitle.text = text;
+    }
+
+    public void setTextScoreTime(string text)
+    {
+        if (gameOverTextTime != null)
+            gameOverTextTime.text = text;
+    }
+
+    public void setTextScorePorto(string text)
+    {
+        if (gameOverTextPorto != null)
+            gameOverTextPorto.text = text;
+    }
+
+    public void setTextScorePostCorrect(string text)
+    {
+        if (gameOverTextPostCorrect != null)
+            gameOverTextPostCorrect.text = text;
+    }
+
+    public void setTextScorePostWrong(string text)
+    {
+        if (gameOverTextPostWrong != null)
+            gameOverTextPostWrong.text = text;
+    }
+
+    public void setTextScoreStampedCorrect(string text)
+    {
+        if (gameOverTextStampedCorrect != null)
+            gameOverTextStampedCorrect.text = text;
+    }
+
+    public void setTextScoreStampedWrong(string text)
+    {
+        if (gameOverTextStampedWrong != null)
+            gameOverTextStampedWrong.text = text;
+    }
+
+    public void setTextScoreMoney(string text)
+    {
+        if (gameOverTextMoney != null)
+            gameOverTextMoney.text = text;
     }
 }

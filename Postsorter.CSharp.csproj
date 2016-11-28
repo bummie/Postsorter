@@ -81,7 +81,6 @@
     <Compile Include="Assets\Scripts\Other\Timer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Confetti Particles 2\Confetti 2 - Readme.txt" />
     <None Include="Assets\Resources\Materials\TerrainMat\TerrainSurface.shader" />
     <None Include="Assets\Resources\Shaders\3DText.shader" />
     <None Include="Assets\Resources\Terrain\Water (Basic)\Shaders\FXWaterBasic.shader" />

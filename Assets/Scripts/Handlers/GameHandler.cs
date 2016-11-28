@@ -80,7 +80,7 @@ public class GameHandler : MonoBehaviour
 
             case GAME_END:
                 Debug.Log("Game_ended");
-                hud.displayNotification("Game over", 3f);
+                gameOverUI();
                 timer.stopStimer();
                 break;
 
@@ -124,5 +124,17 @@ public class GameHandler : MonoBehaviour
         }
         else
             return false;
+    }
+
+    public void gameOverUI()
+    {
+        hud.displayGameOver(true);
+        hud.setTextScoreTime(timer.getPrettyTimeLeft());
+        hud.setTextScorePorto("31");
+        hud.setTextScorePostCorrect("31");
+        hud.setTextScorePostWrong("31");
+        hud.setTextScoreStampedCorrect("31");
+        hud.setTextScoreStampedWrong("31");
+        hud.setTextScoreMoney("$344321");
     }
 }
