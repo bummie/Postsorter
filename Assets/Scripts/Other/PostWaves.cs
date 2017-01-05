@@ -54,9 +54,10 @@ public class PostWaves : MonoBehaviour {
     {
         initDistrictWaves();
         int day = IO.getCurrentDay();
+        int season = IO.getSeason();
 
         if(districtWaves != null && getCurrentWave() < districtWaves.Length)
-            postSpawn.spawnPostFromMap(day, districtWaves[getCurrentWave()]);
+            postSpawn.spawnPostFromMap(day, season, districtWaves[getCurrentWave()]);
 
         waveDone = false;
     }

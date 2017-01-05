@@ -12,6 +12,17 @@ public class ScoreHandler : MonoBehaviour {
     private int _amount_notStamped;
     private int _amount_Stamped;
 
+    // Money gain score
+    private int money_correct_small = 5;
+    private int money_correct_large = 7;
+    private int money_correct_package = 10;
+    private int money_correct_porto = 30;
+    private int money_correct_stamped = 5;
+
+    private int money_wrong_post = -5;
+    private int money_wrong_lost = -10;
+    private int money_wrong_stamped = -3;
+    private int money_wrong_garbage = -3;
 
     private GameObject HUD;
 
@@ -20,6 +31,25 @@ public class ScoreHandler : MonoBehaviour {
         amount_Package = amount_Large = amount_Small = amount_Porto  = amount_Wrong = amount_Lost = amount_Garbage = amount_notStamped = amount_Stamped = 0;
         HUD = GameObject.FindGameObjectWithTag("HUD");
 	}
+
+    public int calculateGainedMoney()
+    {
+        int moneyGained = 0;
+
+        moneyGained += money_correct_small * amount_Small;
+        moneyGained += money_correct_large * amount_Large;
+        moneyGained += money_correct_package * amount_Package;
+        moneyGained += money_correct_porto * amount_Porto;
+        moneyGained += money_correct_stamped * amount_Stamped;
+        moneyGained += money_wrong_post * amount_Wrong;
+        moneyGained += money_wrong_lost * amount_Lost;
+        moneyGained += money_wrong_stamped * amount_notStamped;
+        moneyGained += money_wrong_garbage * amount_Garbage;
+
+        if (moneyGained < 0)
+            moneyGained = 0;
+        return moneyGained;
+    }
 
     public void printScore()
     {
@@ -46,6 +76,19 @@ public class ScoreHandler : MonoBehaviour {
             HUD.GetComponent<HUDHandler>().setPorto(amount_Porto.ToString());
         }
         
+    }
+
+    public void resetScore()
+    {
+        amount_Small = 0;
+        amount_Large = 0;
+        amount_Package = 0;
+        amount_Porto = 0;
+        amount_Wrong = 0;
+        amount_Lost = 0;
+        amount_Garbage = 0;
+        amount_notStamped = 0;
+        amount_Stamped = 0;
     }
 
     public int amount_Package { get { return _amount_Package; } set { _amount_Package = value; updateHUD(); } }

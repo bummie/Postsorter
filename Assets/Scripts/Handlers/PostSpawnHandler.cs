@@ -55,8 +55,9 @@ public class PostSpawnHandler : MonoBehaviour
             queuedPostIndex++;
     }
 
-    public void spawnPostFromMap(int dag, int district)
+    public void spawnPostFromMap(int dag, int season, int district)
     {
+        mapReader.setSeason(season);
         string[] typePost = mapReader.returnPost(dag, district);
         GameObject[] newSpawnedPost = new GameObject[typePost.Length];
         for(int i = 0; i < typePost.Length; i++)

@@ -12,6 +12,10 @@ public class GameHandler : MonoBehaviour
     private HUDHandler hud;
     private int[] districtWaves;
 
+    private bool gameOverTimeRanOut = false;
+
+    public GameObject scoreH;
+
     void Start ()
     {
         hud = GameObject.FindGameObjectWithTag("HUD").GetComponent<HUDHandler>();
@@ -80,6 +84,7 @@ public class GameHandler : MonoBehaviour
 
             case GAME_END:
                 Debug.Log("Game_ended");
+                nextDay();
                 gameOverUI();
                 timer.stopStimer();
                 break;
@@ -91,12 +96,23 @@ public class GameHandler : MonoBehaviour
                 else
                 {
                     setGameState(RUNNING);
-                    wave.setCurrentWave(wave.getCurrentWave()+1);
+                    // FIkse her sjekke om det er en neste wave
+                    wave.setCurrentWave(wave.getCurrentWave() + 1);
                     spawnPost();
                 }
 
                 break;
         }
+    }
+
+    public void restartGame()
+    {
+        setGameState(RUNNING);
+        wave.setCurrentWave(0);
+        hud.displayGameOver(false);
+        timer.resetTimer();
+        scoreH.GetComponent<ScoreHandler>().resetScore();
+        spawnPost();
     }
 
     private void timeRanOut()
@@ -105,12 +121,15 @@ public class GameHandler : MonoBehaviour
         if (timer.getTimeLeft() <= 0)
         {
             setGameState(GAME_END);
+            gameOverTimeRanOut = true;
             timer.stopStimer();
         }
     }
 
     private void spawnPost()
     {
+        Debug.Log("Day " + IO.getCurrentDay() + ", " + IO.getSeason());
+        // Prøve snu om rekkefølgen her fikse 3/2 bug
         hud.setWave((wave.getCurrentWave()+1) + "/" + wave.getAmountWaves());
         hud.displayNotification("Next wave from " + IO.getDistrictName(wave.getCurrentDistrict()), 2.3f);
         wave.spawnWave();
@@ -126,16 +145,44 @@ public class GameHandler : MonoBehaviour
             return false;
     }
 
+    private void nextDay()
+    {
+        if (IO.getCurrentDay() >= 5)
+        {
+            IO.setCurrentDay(0);
+            if (IO.getSeason() >= 3)
+                IO.setSeason(0);
+            else
+                IO.setSeason(IO.getSeason() + 1);
+        }
+        else
+        {
+            IO.setCurrentDay(IO.getCurrentDay() + 1);
+        }  
+    }
+
     public void gameOverUI()
     {
         hud.displayGameOver(true);
-        hud.setTextScoreTitle("O.G Post");
-        hud.setTextScoreTime(timer.getPrettyTimeLeft());
-        hud.setTextScorePorto("31");
-        hud.setTextScorePostCorrect("31");
-        hud.setTextScorePostWrong("31");
-        hud.setTextScoreStampedCorrect("31");
-        hud.setTextScoreStampedWrong("31");
-        hud.setTextScoreMoney("$344321");
+        if (scoreH != null)
+        {
+            ScoreHandler sH = scoreH.GetComponent<ScoreHandler>();
+            int moneyGained = sH.calculateGainedMoney();
+            IO.setMoney(IO.getMoney() + moneyGained);
+
+            sH.printScore();
+            int correct = sH.amount_Large + sH.amount_Small + sH.amount_Package;
+            if(gameOverTimeRanOut)
+                hud.setTextScoreTitle("Time ran out!");
+            else
+                hud.setTextScoreTitle("Workday over");
+            hud.setTextScoreTime(timer.getPrettyTimeLeft());
+            hud.setTextScorePorto(sH.amount_Porto.ToString());
+            hud.setTextScorePostCorrect(correct.ToString());
+            hud.setTextScorePostWrong(sH.amount_Wrong.ToString());
+            hud.setTextScoreStampedCorrect(sH.amount_Stamped.ToString());
+            hud.setTextScoreStampedWrong(sH.amount_notStamped.ToString());
+            hud.setTextScoreMoney("$" + moneyGained.ToString());
+        }
     }
 }

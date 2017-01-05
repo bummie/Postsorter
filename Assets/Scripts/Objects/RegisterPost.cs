@@ -110,11 +110,14 @@ public class RegisterPost : MonoBehaviour
     {
         if (!post.GetComponent<PostInfo>().stamped)
             score.amount_notStamped++;
+        else
+            score.amount_Stamped++;
     }
 
     private void sortertFeil(GameObject post)
     {
         playSoundWrong();
+        registerStamped(post);
         Destroy(post);
         score.amount_Wrong++;
     }
