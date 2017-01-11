@@ -81,6 +81,7 @@
     <Compile Include="Assets\Scripts\Other\PostWaves.cs" />
     <Compile Include="Assets\Scripts\Other\SimpleJSON.cs" />
     <Compile Include="Assets\Scripts\Other\Timer.cs" />
+    <Compile Include="Assets\Scripts\UI\MapHud.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Confetti Particles 2\Confetti 2 - Readme.txt" />
